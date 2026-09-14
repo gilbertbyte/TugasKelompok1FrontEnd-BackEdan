@@ -1,10 +1,12 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #000000;
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #111827;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -13,67 +15,136 @@ h1 {
 }
 
 .controls {
-  background: #060607;
-  padding: 20px;
+  width: min(100%, 920px);
+  box-sizing: border-box;
+  background: #ffffff;
+  padding: 18px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(248, 246, 246, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   display: flex;
-  gap: 10px;
+  gap: 14px;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 30px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 label {
   font-weight: bold;
-  color: #fffefe;
+  color: #1f2937;
+}
+
+input[type="number"],
+select {
+  height: 38px;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+  font-size: 15px;
 }
 
 input[type="number"] {
-  width: 70px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  width: 64px;
   text-align: center;
 }
 
 button {
+  height: 38px;
   padding: 8px 16px;
-  background-color: #b700ff;
+  background-color: #1769e0;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background-color: #8000b3;
+  background-color: #0d4fae;
 }
 
 #triangle-container {
+  width: min(100%, 920px);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
+  padding: 24px 0;
 }
 
 .row {
   display: flex;
-  justify-content: center;
   gap: 8px;
 }
 
+.alignment-left .row {
+  justify-content: flex-start;
+}
+
+.alignment-center .row {
+  justify-content: center;
+}
+
+.alignment-right .row {
+  justify-content: flex-end;
+}
+
 .cell {
-  width: 40px;
-  height: 40px;
-  background-color: #fefffe;
-  color: rgb(85, 13, 107);
+  width: 56px;
+  min-width: 56px;
+  height: 44px;
+  background-color: #ffffff;
+  color: #123d73;
   font-weight: bold;
-  border-radius: 50%;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+}
+
+.cell sup,
+.cell sub {
+  font-size: 0.7em;
+  line-height: 0;
+}
+
+.expansion {
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .control-group,
+  .control-group select,
+  .presentation-group select,
+  button {
+    width: 100%;
+  }
+
+  .control-group {
+    justify-content: space-between;
+  }
+
+  #triangle-container {
+    overflow-x: auto;
+  }
 }
