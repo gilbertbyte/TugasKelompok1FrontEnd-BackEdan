@@ -36,7 +36,6 @@
       <select id="presentation" onchange="generateTriangle()">
         <option value="numbers">Numbers</option>
         <option value="ncr">Combinations: nCᵣ</option>
-        <option value="binomial">Combinations: ⁽ⁿ⁾Cᵣ</option>
         <option value="expansion">Expansion: (a + b)ⁿ</option>
       </select>
     </div>
@@ -46,6 +45,8 @@
 
   <div id="triangle-container"></div>
 
+  <div id="result-display"></div>
+
   <script>
     function generateTriangle() {
       const rowsInput = document.getElementById('numRows').value;
@@ -54,8 +55,10 @@
       const order = document.getElementById('order').value;
       const presentation = document.getElementById('presentation').value;
       const container = document.getElementById('triangle-container');
-      
+      const resultDisplay = document.getElementById('result-display');
+
       container.innerHTML = '';
+      resultDisplay.innerHTML = '';
 
       if (isNaN(numRows) || numRows < 1) return;
 
@@ -85,6 +88,14 @@
           const cellDiv = document.createElement('div');
           cellDiv.className = 'cell';
           cellDiv.innerHTML = formatValue(val, rowIndex, columnIndex, presentation);
+
+          cellDiv.addEventListener('click', () => {
+            document.querySelectorAll('#triangle-container .row').forEach(r => r.classList.remove('row-active'));
+            rowDiv.classList.add('row-active');
+
+            showCalculation(rowIndex, columnIndex, val, rowValues, presentation);
+          });
+
           rowDiv.appendChild(cellDiv);
         });
 
@@ -97,15 +108,67 @@
         return `${rowIndex}C${columnIndex}`;
       }
 
-      if (presentation === 'binomial') {
-        return `<span class="binomial"><sup>${rowIndex}</sup>C<sub>${columnIndex}</sub></span>`;
-      }
-
       if (presentation === 'expansion') {
         return `<span class="expansion">${value}a<sup>${rowIndex - columnIndex}</sup>b<sup>${columnIndex}</sup></span>`;
       }
 
       return value;
+    }
+
+    function factorial(n) {
+      let result = 1;
+      for (let k = 2; k <= n; k++) result *= k;
+      return result;
+    }
+
+    function showCalculation(rowIndex, columnIndex, value, rowValues, presentation) {
+      const resultDisplay = document.getElementById('result-display');
+
+      let detailHtml = '';
+
+      if (presentation === 'expansion') {
+        detailHtml = `
+          <p class="calc-title">Suku ke-${columnIndex} dari (a + b)<sup>${rowIndex}</sup></p>
+          <p class="calc-step">Koefisien = ${rowIndex}C${columnIndex} = ${value}</p>
+          <p class="calc-result">=&nbsp; <strong>${value}a<sup>${rowIndex - columnIndex}</sup>b<sup>${columnIndex}</sup></strong></p>
+        `;
+      } else if (presentation === 'ncr') {
+        detailHtml = `
+          <p class="calc-title">${rowIndex}C${columnIndex} &nbsp;=&nbsp; ${rowIndex}! / (${columnIndex}! × (${rowIndex}-${columnIndex})!)</p>
+          <p class="calc-step">=&nbsp; ${factorial(rowIndex)} / (${factorial(columnIndex)} × ${factorial(rowIndex - columnIndex)})</p>
+          <p class="calc-result">=&nbsp; <strong>${value}</strong></p>
+        `;
+      } else {
+        if (columnIndex === 0 || columnIndex === rowIndex) {
+          detailHtml = `
+            <p class="calc-title">Baris ${rowIndex}, posisi ${columnIndex}</p>
+            <p class="calc-step">Angka di ujung baris selalu = 1</p>
+            <p class="calc-result">=&nbsp; <strong>${value}</strong></p>
+          `;
+        } else {
+          detailHtml = `
+            <p class="calc-title">Baris ${rowIndex}, posisi ${columnIndex}</p>
+            <p class="calc-step">= (baris ${rowIndex - 1}, posisi ${columnIndex - 1}) + (baris ${rowIndex - 1}, posisi ${columnIndex})</p>
+            <p class="calc-result">=&nbsp; <strong>${value}</strong></p>
+          `;
+        }
+      }
+
+      // bikin daftar semua isi baris ini, sesuai mode presentation
+      const rowItemsHtml = rowValues
+        .map((val, j) => {
+          const formatted = formatValue(val, rowIndex, j, presentation);
+          const isClicked = j === columnIndex;
+          return `<span class="row-item${isClicked ? ' row-item-active' : ''}">${formatted}</span>`;
+        })
+        .join('');
+
+      resultDisplay.innerHTML = `
+        ${detailHtml}
+        <hr class="calc-divider">
+        <p class="calc-title">Semua isi baris ${rowIndex}:</p>
+        <div class="row-items">${rowItemsHtml}</div>
+      `;
     }
 
     generateTriangle();
