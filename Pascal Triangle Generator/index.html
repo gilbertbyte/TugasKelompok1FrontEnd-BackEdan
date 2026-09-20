@@ -36,7 +36,7 @@
       <select id="presentation" onchange="generateTriangle()">
         <option value="numbers">Numbers</option>
         <option value="ncr">Combinations: nCᵣ</option>
-        <option value="expansion">Expansion: (a + b)ⁿ</option>
+        <option value="expansion" selected>Expansion: (a + b)ⁿ</option>
       </select>
     </div>
 
@@ -103,13 +103,30 @@
       });
     }
 
+    function formatExpansionTerm(value, pA, pB) {
+      if (pA === 0 && pB === 0) return `${value}`;
+
+      let partA = '';
+      if (pA === 1) partA = 'a';
+      else if (pA > 1) partA = `a<sup>${pA}</sup>`;
+
+      let partB = '';
+      if (pB === 1) partB = 'b';
+      else if (pB > 1) partB = `b<sup>${pB}</sup>`;
+
+      const vars = partA + partB;
+      const coeff = (value === 1 && vars !== '') ? '' : value;
+
+      return `${coeff}${vars}`;
+    }
+
     function formatValue(value, rowIndex, columnIndex, presentation) {
       if (presentation === 'ncr') {
         return `${rowIndex}C${columnIndex}`;
       }
 
       if (presentation === 'expansion') {
-        return `<span class="expansion">${value}a<sup>${rowIndex - columnIndex}</sup>b<sup>${columnIndex}</sup></span>`;
+        return `<span class="expansion">${formatExpansionTerm(value, rowIndex - columnIndex, columnIndex)}</span>`;
       }
 
       return value;
@@ -123,14 +140,18 @@
 
     function showCalculation(rowIndex, columnIndex, value, rowValues, presentation) {
       const resultDisplay = document.getElementById('result-display');
-
       let detailHtml = '';
 
       if (presentation === 'expansion') {
+        const fullEquation = rowValues
+          .map((val, j) => formatExpansionTerm(val, rowIndex - j, j))
+          .join(' + ');
+
         detailHtml = `
-          <p class="calc-title">Suku ke-${columnIndex} dari (a + b)<sup>${rowIndex}</sup></p>
-          <p class="calc-step">Koefisien = ${rowIndex}C${columnIndex} = ${value}</p>
-          <p class="calc-result">=&nbsp; <strong>${value}a<sup>${rowIndex - columnIndex}</sup>b<sup>${columnIndex}</sup></strong></p>
+          <p class="calc-title">Persamaan Ekspansi Baris ${rowIndex}:</p>
+          <p class="calc-equation" style="font-size: 1.25rem; font-weight: bold; margin: 8px 0; color: #2563eb;">
+            (a + b)<sup>${rowIndex}</sup> = ${fullEquation}
+          </p>
         `;
       } else if (presentation === 'ncr') {
         detailHtml = `
@@ -154,14 +175,14 @@
         }
       }
 
-      // bikin daftar semua isi baris ini, sesuai mode presentation
+      const separator = presentation === 'expansion' ? ' <span style="font-weight: bold; margin: 0 4px;">+</span> ' : '';
       const rowItemsHtml = rowValues
         .map((val, j) => {
           const formatted = formatValue(val, rowIndex, j, presentation);
           const isClicked = j === columnIndex;
           return `<span class="row-item${isClicked ? ' row-item-active' : ''}">${formatted}</span>`;
         })
-        .join('');
+        .join(separator);
 
       resultDisplay.innerHTML = `
         ${detailHtml}
