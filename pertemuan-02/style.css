@@ -61,15 +61,14 @@ a {
     color: var(--cream);
 }
 
-.nav-toggle {
-    display: none;
-}
-
 .nav-burger {
     display: flex;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
 }
 
 .nav-burger span {
@@ -86,7 +85,7 @@ a {
     padding-top: 12px;
 }
 
-.nav-toggle:checked ~ .main-nav {
+.main-nav.nav-open {
     display: flex;
 }
 
@@ -169,11 +168,53 @@ a {
     color: #4a3826;
 }
 
+.menu-footer {
+    margin: 4px 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .menu-card .price {
-    display: block;
-    margin: 0 16px;
     font-weight: bold;
     color: var(--coffee);
+}
+
+/* Tombol Suka dan penghitung */
+.like-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--cream);
+    border: 1px solid rgba(111, 69, 38, 0.25);
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--coffee);
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.like-btn:active {
+    transform: scale(0.94);
+}
+
+.like-icon {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+/* class liked ditambah/dihapus lewat jQuery saat tombol diklik */
+.like-btn.liked {
+    background: var(--caramel);
+    color: var(--dark-roast);
+    border-color: var(--caramel);
+}
+
+.like-btn.liked .like-icon {
+    color: #b3261e;
 }
 
 .about-section {
@@ -218,6 +259,69 @@ a {
 .stat span {
     font-size: 0.8rem;
     color: var(--dark-roast);
+}
+
+/* FAQ Section */
+
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px 70px;
+    text-align: center;
+}
+
+.faq-list {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--cream-card);
+    border: 1px solid rgba(111, 69, 38, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 16px 18px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    color: var(--dark-roast);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.faq-icon {
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: var(--coffee);
+    transition: transform 0.2s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 18px 16px;
+}
+
+.faq-answer p {
+    margin: 0;
+    color: #4a3826;
+    line-height: 1.6;
+    font-size: 0.94rem;
 }
 
 .site-footer {
@@ -266,6 +370,28 @@ a {
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* Tombol kembali ke atas */
+#back-to-top {
+    display: none; /* disembunyikan dulu dan akan muncul setelah 300px */
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--coffee);
+    color: var(--cream);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 20;
+}
+
+#back-to-top:hover {
+    background: var(--dark-roast);
 }
 
 @media (min-width: 992px) {

@@ -11,15 +11,15 @@
         <div class="nav-wrap">
             <a href="#beranda" class="brand">Kopi Nusantara</a>
 
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="nav-burger" aria-label="Buka menu">
+            <button class="nav-burger" aria-label="Buka menu">
                 <span></span><span></span><span></span>
-            </label>
+            </button>
 
             <nav class="main-nav">
                 <a href="#beranda">Beranda</a>
                 <a href="#menu">Menu</a>
                 <a href="#tentang">Tentang</a>
+                <a href="#faq">FAQ</a>
                 <a href="#kontak">Kontak</a>
             </nav>
         </div>
@@ -44,28 +44,52 @@
                     <img src="images/kopi-susu-gula-aren.jpeg" alt="Kopi Susu Gula Aren" class="menu-img">
                     <h3>Kopi Susu Gula Aren</h3>
                     <p>Espresso robusta lokal dipadukan susu segar dan gula aren asli.</p>
-                    <span class="price">Rp 25.000</span>
+                    <div class="menu-footer">
+                        <span class="price">Rp 25.000</span>
+                        <button class="like-btn" type="button" aria-label="Suka menu ini">
+                            <span class="like-icon">♡</span>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                 </article>
 
                 <article class="menu-card">
                     <img src="images/kopi-tubruk.jpeg" alt="Kopi Tubruk Nusantara" class="menu-img">
                     <h3>Kopi Tubruk Nusantara</h3>
                     <p>Kopi hitam tradisional, diseduh kasar khas warung kopi rumahan.</p>
-                    <span class="price">Rp 27.000</span>
+                    <div class="menu-footer">
+                        <span class="price">Rp 27.000</span>
+                        <button class="like-btn" type="button" aria-label="Suka menu ini">
+                            <span class="like-icon">♡</span>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                 </article>
 
                 <article class="menu-card">
                     <img src="images/cappucino.jpeg" alt="Cappuccino" class="menu-img">
                     <h3>Cappuccino</h3>
                     <p>Minuman kopi khas Italia yang dibuat dari perbandingan seimbang antara espreso, susu panas, dan busa susu.</p>
-                    <span class="price">Rp 24.000</span>
+                    <div class="menu-footer">
+                        <span class="price">Rp 24.000</span>
+                        <button class="like-btn" type="button" aria-label="Suka menu ini">
+                            <span class="like-icon">♡</span>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                 </article>
 
                 <article class="menu-card">
                     <img src="images/americano.jpeg" alt="Americano" class="menu-img">
                     <h3>Americano</h3>
                     <p>Minuman kopi hitam yang dibuat dengan mencampurkan satu atau dua shot espresso dengan air panas</p>
-                    <span class="price">Rp 22.000</span>
+                    <div class="menu-footer">
+                        <span class="price">Rp 22.000</span>
+                        <button class="like-btn" type="button" aria-label="Suka menu ini">
+                            <span class="like-icon">♡</span>
+                            <span class="like-count">0</span>
+                        </button>
+                    </div>
                 </article>
 
             </div>
@@ -82,6 +106,65 @@
                     <div class="stat"><strong>50+</strong><span>Menu Racikan</span></div>
                     <div class="stat"><strong>3</strong><span>Tahun Beroperasi</span></div>
                 </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <h2>Pertanyaan Umum</h2>
+            <p class="section-lead">Beberapa hal yang paling sering ditanyakan pelanggan kami.</p>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Apakah Kopi Nusantara buka setiap hari?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ya, kami buka setiap hari mulai pukul 08.00 hingga 21.00 WIB, termasuk akhir pekan dan hari libur nasional.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Apakah bisa pesan lewat WhatsApp?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tentu. Kamu bisa langsung chat ke 0812-3456-7890 untuk pemesanan, tanya menu, atau reservasi tempat.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Apakah tersedia opsi kopi tanpa gula?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bisa. Hampir semua menu bisa disesuaikan tingkat kemanisannya, termasuk tanpa gula sama sekali, cukup sampaikan saat memesan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Apakah menerima pesanan dalam jumlah besar (katering/acara)?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ya, kami melayani pesanan dalam jumlah besar untuk acara kantor, seminar, maupun acara keluarga. Silakan hubungi kami minimal 2 hari sebelumnya.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Dari mana asal biji kopi yang digunakan?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Biji kopi kami berasal dari lebih dari 7 daerah penghasil kopi di Indonesia, dipilih langsung dari petani lokal.</p>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -105,5 +188,10 @@
         <p class="copyright">&copy; 2026 Kopi Nusantara</p>
     </footer>
 
+    <!-- Tombol kembali ke atas, disembunyikan default via CSS lalu di-fade in/out oleh jQuery -->
+    <button id="back-to-top" aria-label="Kembali ke atas">&uarr;</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
