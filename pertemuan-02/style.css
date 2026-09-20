@@ -171,9 +171,59 @@ a {
 
 .menu-card .price {
     display: block;
-    margin: 0 16px;
     font-weight: bold;
     color: var(--coffee);
+}
+
+.menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 16px;
+}
+
+.like-widget {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.like-btn {
+    border: 1px solid var(--caramel);
+    background: transparent;
+    color: var(--coffee);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+    background: rgba(192, 133, 82, 0.15);
+}
+
+.like-btn.liked {
+    background: var(--caramel);
+    color: #fff;
+    border-color: var(--caramel);
+}
+
+.like-btn.like-pop {
+    transform: scale(1.3);
+}
+
+.like-count {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--coffee);
+    min-width: 14px;
+    text-align: left;
 }
 
 .about-section {
@@ -218,6 +268,73 @@ a {
 .stat span {
     font-size: 0.8rem;
     color: var(--dark-roast);
+}
+
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px 60px;
+    text-align: center;
+}
+
+.faq-list {
+    text-align: left;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--cream-card);
+    border: 1px solid rgba(111, 69, 38, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 16px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.faq-question:hover {
+    background: rgba(192, 133, 82, 0.12);
+}
+
+.faq-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--caramel);
+    color: var(--dark-roast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.25s ease;
+}
+
+.faq-question.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 18px 16px;
+}
+
+.faq-answer p {
+    margin: 0;
+    color: #4a3826;
+    line-height: 1.6;
 }
 
 .site-footer {
