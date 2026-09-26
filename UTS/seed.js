@@ -1,6 +1,6 @@
-// Run once with: npm run seed
-// Creates the first admin user interactively via env vars or defaults.
-// Change the password immediately after first login in a real deployment.
+
+
+
 
 const bcrypt = require("bcrypt");
 const readline = require("readline");
