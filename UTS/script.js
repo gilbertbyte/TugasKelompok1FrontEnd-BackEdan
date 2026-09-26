@@ -25,8 +25,6 @@ $(function () {
     { nama: "Pisang Ijo Ratu Rasa", alamat: "Jl. Sultan Alauddin, Makassar", jarak: "3.1 km", buka: false, jam: "10.00 - 18.00", rating: "4.5", ulasan: 54 }
   ];
 
-  /* ---------- Renderers ---------- */
-
   function renderTokoPopuler() {
     var $grid = $("#tokoPopulerGrid").empty();
     tokoPopuler.forEach(function (t) {
@@ -107,18 +105,6 @@ $(function () {
   renderTestimoni();
   renderTokoHasil(tokoHasil);
 
-  /* ---------- Hero search ---------- */
-
-  $("#heroSearchForm").on("submit", function (e) {
-    e.preventDefault();
-    var q = $("#heroSearchInput").val().trim();
-    $("#filterNama").val(q);
-    $("html, body").animate({ scrollTop: $("#cari-toko").offset().top - 80 }, 400);
-    applyFilter();
-  });
-
-  /* ---------- Filter / search section ---------- */
-
   function applyFilter() {
     var nama = $("#filterNama").val().trim().toLowerCase();
     var kota = $("#filterKota").val().trim().toLowerCase();
@@ -151,15 +137,11 @@ $(function () {
     applyFilter();
   });
 
-  /* ---------- Add to cart feedback ---------- */
-
   $(document).on("click", ".add-btn", function () {
     var $btn = $(this);
     $btn.text("✓");
     setTimeout(function () { $btn.text("+"); }, 900);
   });
-
-  /* ---------- FAQ accordion ---------- */
 
   $(".accordion-trigger").on("click", function () {
     var $item = $(this).closest(".accordion-item");
@@ -173,8 +155,6 @@ $(function () {
       $panel.css("max-height", $panel.prop("scrollHeight") + "px");
     }
   });
-
-  /* ---------- Demo buttons (no backend, just UX feedback) ---------- */
 
   $("#loginBtn").on("click", function () {
     alert("Demo: form Login / Sign In akan tampil di sini.");
