@@ -9,61 +9,266 @@
 </head>
 <body>
   <header class="admin-header">
-    <span class="admin-logo">Website<em>Admin</em></span>
+    <span class="admin-logo">Admin<em>Dashboard</em></span>
     <div class="admin-user">
       <span id="whoami"></span>
       <button id="logoutBtn" class="btn-logout">Logout</button>
     </div>
   </header>
 
-  <main class="admin-main">
-    <div class="admin-toolbar">
-      <h1>Kelola Toko</h1>
-      <button id="newStoreBtn" class="btn-primary">+ Add Stores</button>
-    </div>
+  <div class="admin-shell">
+    <nav class="admin-sidebar">
+      <button class="tab-btn active" data-tab="hero">Beranda / Hero</button>
+      <button class="tab-btn" data-tab="toko">Toko</button>
+      <button class="tab-btn" data-tab="menu">Menu</button>
+      <button class="tab-btn" data-tab="tentang">Tentang &amp; Sejarah</button>
+      <button class="tab-btn" data-tab="testimoni">Testimoni</button>
+      <button class="tab-btn" data-tab="cari">Cari Toko (teks)</button>
+      <button class="tab-btn" data-tab="faq">FAQ</button>
+      <button class="tab-btn" data-tab="kontak">Kontak</button>
+      <button class="tab-btn" data-tab="footer">Footer</button>
+      <button class="tab-btn" data-tab="situs">Pengaturan Situs</button>
+    </nav>
 
-    <table class="admin-table" id="storeTable">
-      <thead>
-        <tr>
-          <th>Nama Toko</th>
-          <th>Alamat</th>
-          <th>Jam Buka</th>
-          <th>Status</th>
-          <th>Rating</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="storeTableBody">
-        <!-- rows injected by admin.js -->
-      </tbody>
-    </table>
-  </main>
+    <main class="admin-main">
 
-  <div class="modal-backdrop" id="storeModal">
+      
+      <section class="tab-panel active" id="tab-hero">
+        <h1>Beranda / Hero</h1>
+        <form class="content-form" id="form-hero">
+          <label>Badge</label>
+          <input type="text" data-field="badge">
+          <label>Title (Heading)</label>
+          <input type="text" data-field="heading">
+          <label>Sub-title</label>
+          <textarea data-field="subheading" rows="2"></textarea>
+          <label>Placeholder Search Bar</label>
+          <input type="text" data-field="search_placeholder">
+          <label>Teks Tombol Utama</label>
+          <input type="text" data-field="cta_primary">
+          <label>Teks Tombol Kedua</label>
+          <input type="text" data-field="cta_secondary">
+          <button type="submit" class="btn-primary">Save</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-toko">
+        <h1>Toko</h1>
+
+        <h2 class="sub-heading">Teks Bagian "Popular Stores"</h2>
+        <form class="content-form" id="form-toko_populer">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Sub-judul</label>
+          <textarea data-field="subheading" rows="2"></textarea>
+          <label>Teks Tautan "Lihat semua"</label>
+          <input type="text" data-field="link_text">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+
+        <h2 class="sub-heading">Daftar Toko</h2>
+        <p class="hint">Dipakai di beranda (3 teratas) dan halaman Cari Toko (semua).</p>
+        <button class="btn-primary add-item-btn" data-list="stores">+ Tambah Toko</button>
+        <table class="admin-table" data-list-table="stores">
+          <thead>
+            <tr><th>Nama</th><th>Alamat</th><th>Jarak</th><th>Jam</th><th>Status</th><th>Rating</th><th>Ulasan</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-menu">
+        <h1>Menu</h1>
+
+        <h2 class="sub-heading">Teks Bagian "Menu Unggulan"</h2>
+        <form class="content-form" id="form-menu_section">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Sub-judul</label>
+          <textarea data-field="subheading" rows="2"></textarea>
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+
+        <h2 class="sub-heading">Daftar Menu</h2>
+        <button class="btn-primary add-item-btn" data-list="menu">+ Tambah Menu</button>
+        <table class="admin-table" data-list-table="menu">
+          <thead><tr><th>Nama</th><th>Deskripsi</th><th>Harga</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-tentang">
+        <h1>Tentang &amp; Sejarah</h1>
+
+        <h2 class="sub-heading">Tentang Platform</h2>
+        <form class="content-form" id="form-about">
+          <label>Label kecil (eyebrow)</label>
+          <input type="text" data-field="eyebrow">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Deskripsi</label>
+          <textarea data-field="description" rows="3"></textarea>
+          <label>Teks placeholder gambar</label>
+          <input type="text" data-field="media_text">
+          <label>Pill 1</label>
+          <input type="text" data-field="pill_1">
+          <label>Pill 2</label>
+          <input type="text" data-field="pill_2">
+          <label>Pill 3</label>
+          <input type="text" data-field="pill_3">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+
+        <h2 class="sub-heading">Sejarah Pisang Ijo</h2>
+        <form class="content-form" id="form-history">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Isi Teks</label>
+          <textarea data-field="text" rows="5"></textarea>
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-testimoni">
+        <h1>Testimoni</h1>
+
+        <h2 class="sub-heading">Teks Bagian Testimoni</h2>
+        <form class="content-form" id="form-testimonial_section">
+          <label>Label kecil (eyebrow)</label>
+          <input type="text" data-field="eyebrow">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Teks Tombol "Tulis Ulasan"</label>
+          <input type="text" data-field="cta">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+
+        <h2 class="sub-heading">Daftar Testimoni</h2>
+        <button class="btn-primary add-item-btn" data-list="testimonials">+ Tambah Testimoni</button>
+        <table class="admin-table" data-list-table="testimonials">
+          <thead><tr><th>Nama</th><th>Ulasan</th><th>Waktu</th><th>Bintang</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-cari">
+        <h1>Cari Toko (Teks Bagian)</h1>
+        <p class="hint">Daftar toko itu sendiri dikelola di tab "Toko".</p>
+        <form class="content-form" id="form-cari_toko">
+          <label>Label kecil (eyebrow)</label>
+          <input type="text" data-field="eyebrow">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Sub-judul</label>
+          <textarea data-field="subheading" rows="2"></textarea>
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-faq">
+        <h1>FAQ</h1>
+
+        <h2 class="sub-heading">Teks Bagian FAQ</h2>
+        <form class="content-form" id="form-faq_section">
+          <label>Label kecil (eyebrow)</label>
+          <input type="text" data-field="eyebrow">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+
+        <h2 class="sub-heading">Daftar Pertanyaan</h2>
+        <button class="btn-primary add-item-btn" data-list="faqs">+ Tambah Pertanyaan</button>
+        <table class="admin-table" data-list-table="faqs">
+          <thead><tr><th>Pertanyaan</th><th>Jawaban</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-kontak">
+        <h1>Kontak</h1>
+        <form class="content-form" id="form-contact">
+          <label>Label kecil (eyebrow)</label>
+          <input type="text" data-field="eyebrow">
+          <label>Judul</label>
+          <input type="text" data-field="heading">
+          <label>Email</label>
+          <input type="text" data-field="email">
+          <label>WhatsApp</label>
+          <input type="text" data-field="whatsapp">
+          <label>Catatan Bantuan</label>
+          <textarea data-field="note" rows="2"></textarea>
+          <label>Jam Layanan</label>
+          <input type="text" data-field="hours">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-footer">
+        <h1>Footer</h1>
+        <form class="content-form" id="form-footer">
+          <label>Tagline</label>
+          <textarea data-field="tagline" rows="2"></textarea>
+          <label>Teks Sosial Media</label>
+          <input type="text" data-field="social_text">
+          <label>Email Bantuan</label>
+          <input type="text" data-field="help_email">
+          <label>WhatsApp Bantuan</label>
+          <input type="text" data-field="help_whatsapp">
+          <label>Label "Syarat & Ketentuan"</label>
+          <input type="text" data-field="legal_terms_label">
+          <label>Label "Kebijakan Privasi"</label>
+          <input type="text" data-field="legal_privacy_label">
+          <label>Teks Copyright</label>
+          <input type="text" data-field="copyright">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+      
+      <section class="tab-panel" id="tab-situs">
+        <h1>Pengaturan Situs</h1>
+        <form class="content-form" id="form-site">
+          <label>Judul Situs (browser tab)</label>
+          <input type="text" data-field="site_title">
+          <label>Teks Logo (header &amp; footer)</label>
+          <input type="text" data-field="logo_text">
+          <button type="submit" class="btn-primary">Simpan Perubahan</button>
+          <span class="save-status"></span>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  
+  <div class="modal-backdrop" id="itemModal">
     <div class="modal">
-      <h2 id="modalTitle">Tambah Toko</h2>
-      <form id="storeForm">
-        <input type="hidden" id="storeId">
-        <label>Nama Toko</label>
-        <input type="text" id="storeNama" required>
-
-        <label>Alamat</label>
-        <input type="text" id="storeAlamat">
-
-        <label>Jam Buka</label>
-        <input type="text" id="storeJam" placeholder="08.00 - 21.00">
-
-        <label>Status</label>
-        <select id="storeStatus">
-          <option value="Buka">Buka</option>
-          <option value="Tutup">Tutup</option>
-        </select>
-
-        <label>Rating</label>
-        <input type="number" id="storeRating" min="0" max="5" step="0.1">
-
+      <h2 id="itemModalTitle">Tambah Item</h2>
+      <form id="itemForm">
+        <input type="hidden" id="itemId">
+        <input type="hidden" id="itemListKey">
+        <div id="itemFormFields"></div>
         <div class="modal-actions">
-          <button type="button" class="btn-outline" id="cancelModalBtn">Batal</button>
+          <button type="button" class="btn-outline" id="cancelItemModalBtn">Batal</button>
           <button type="submit" class="btn-primary">Simpan</button>
         </div>
       </form>

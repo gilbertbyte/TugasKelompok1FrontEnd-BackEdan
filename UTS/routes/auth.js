@@ -5,9 +5,9 @@ const db = require("../db");
 
 const router = express.Router();
 
-// Limit login attempts to slow down brute force (per IP)
+
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000, 
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
@@ -21,7 +21,7 @@ function recordAttempt(username, success) {
   );
 }
 
-// Basic check: has this username had 5+ failed attempts in the last 15 minutes?
+
 function isLockedOut(username) {
   const row = db
     .prepare(
@@ -62,7 +62,7 @@ router.post("/login", loginLimiter, async (req, res) => {
 
   recordAttempt(username, true);
 
-  // Regenerate the session on login to prevent session fixation
+  
   req.session.regenerate((err) => {
     if (err) return res.status(500).json({ error: "Login failed. Please try again." });
     req.session.adminId = user.id;
