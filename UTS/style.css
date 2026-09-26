@@ -91,6 +91,7 @@ p{margin:0 0 8px;}
 
 .link-arrow{color:var(--green-dark);font-weight:600;position:relative;}
 .link-arrow::after{content:"→";margin-left:6px;}
+.link-arrow.no-arrow::after{content:none;margin-left:0;}
 
 /* Header */
 .site-header{
