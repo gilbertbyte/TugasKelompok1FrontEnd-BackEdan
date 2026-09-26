@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <span class="admin-logo">Website<em>Admin</em></span>
+    <div class="admin-user">
+      <span id="whoami"></span>
+      <button id="logoutBtn" class="btn-logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-toolbar">
+      <h1>Kelola Toko</h1>
+      <button id="newStoreBtn" class="btn-primary">+ Add Stores</button>
+    </div>
+
+    <table class="admin-table" id="storeTable">
+      <thead>
+        <tr>
+          <th>Nama Toko</th>
+          <th>Alamat</th>
+          <th>Jam Buka</th>
+          <th>Status</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="storeTableBody">
+        <!-- rows injected by admin.js -->
+      </tbody>
+    </table>
+  </main>
+
+  <div class="modal-backdrop" id="storeModal">
+    <div class="modal">
+      <h2 id="modalTitle">Tambah Toko</h2>
+      <form id="storeForm">
+        <input type="hidden" id="storeId">
+        <label>Nama Toko</label>
+        <input type="text" id="storeNama" required>
+
+        <label>Alamat</label>
+        <input type="text" id="storeAlamat">
+
+        <label>Jam Buka</label>
+        <input type="text" id="storeJam" placeholder="08.00 - 21.00">
+
+        <label>Status</label>
+        <select id="storeStatus">
+          <option value="Buka">Buka</option>
+          <option value="Tutup">Tutup</option>
+        </select>
+
+        <label>Rating</label>
+        <input type="number" id="storeRating" min="0" max="5" step="0.1">
+
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="cancelModalBtn">Batal</button>
+          <button type="submit" class="btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="/admin/assets/admin.js"></script>
+</body>
+</html>
